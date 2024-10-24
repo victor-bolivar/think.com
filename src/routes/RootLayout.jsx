@@ -4,10 +4,10 @@ import Nav from '../components/Nav'
 
 const RootLayout = () => {
     return (
-        <div className='relative'>
+        <div className='relative bg-[#c6cacf] h-screen flex flex-col'>
             <Nav />
 
-            <main>
+            <main className='h-full'>
                 <Outlet />
             </main>
         </div>

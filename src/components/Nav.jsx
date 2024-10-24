@@ -6,7 +6,7 @@ import React from 'react'
 import { navItems } from '../constants'
 import { hamburguer } from '../assets/icons';
 import { NavLink } from 'react-router-dom';
-import PenIcon from './Icons/PenIcon'
+import PenIcon from '../Icons/PenIcon'
 
 const Nav = () => {
     return (
@@ -15,12 +15,17 @@ const Nav = () => {
                 <NavLink to="/" className={`text-4xl tracking-wider`} >
                     <PenIcon width={34} height={34} className={`inline-block`} /> Think
                 </NavLink>
-                <ul className='hidden sm:flex gap-6 items-center font-mono'>
-                    {navItems.map(navItem => (
-                        <li key={navItem.text}>
+                <ul className='hidden sm:flex gap-9 items-center font-mono'>
+                    {navItems.map(navItem => {
+                        // TODO if user not logged in, do not show protected router
+                        if (navItem.protected) {
+                            return null
+                        }
+
+                        return <li key={navItem.text} >
                             <NavLink to={navItem.href} end className={({ isActive }) => `hover:text-gray-400 ${isActive && 'text-gray-400'}`}>{navItem.text}</NavLink>
                         </li>
-                    ))}
+                    })}
                 </ul>
                 <img src={hamburguer} alt="menu icon"
                     height={25} width={25} className='block sm:hidden' />
